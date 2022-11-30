@@ -9,7 +9,7 @@ Risk mitigation: cages around propellers, only flight test with teacher supervis
 &nbsp;
 
 ### Drawing
-<img src="images/design_drawing.png" alt="images/design_drawing.png" width="600" height="400">
+<img src="images/design_drawing.png" alt="images/design_drawing.png" width="500" height="400">
 
 Central platform will hold Pico, circuit board, and battery. Four arms will extend out to hold the motors + propellers, which will have a guard/cage around them and a leg/foot underneath. 
 
@@ -31,7 +31,7 @@ Rotation - two types of propellers used to cancel out torque - 1 and 3 are one t
 
 &nbsp;
 
-###What We Need to Learn
+### What We Need to Learn
 Wireless connection (bluetooth?)
 Wireless remote/controller
 PID
