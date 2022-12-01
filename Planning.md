@@ -56,34 +56,42 @@ PID
 12/5 - discuss + order propellers, start working on CAD and code
 	Initial wiring for code testing
 	
-12/12 - CAD - finish main drone body
-	Code - Start prototyping first flight functions - vertical, horizontal, spinning movement
+12/12 - CAD - finish main drone body. Code - Start prototyping first flight functions - vertical, horizontal, spinning movement
 
 Winter Break
-1/3 - “Initial CAD + Code” 
-CAD - design brackets + cages for motors and brackets for arms
-Code - Start getting motors to work
-1/9 - CAD - finalize design, maybe cut/print
-	Code - PID
-1/17 - CAD - Cut/print, assemble drone
-	Code - PID
-1/24 - learn how to make a circuit board and design it
-	Continue working on PID
-1/30 - “Functional prototype creation”
-print circuit board and wire everything
-Finish PID
-2/6 - See if it works
-2/13 - testing, tweaking coding
-2/21 - testing and tweaking
-2/27 - “Design refinement and final tweaks”
-3/6 - add bluetooth
-3/13 - add bluetooth
-3/20 - add bluetooth
-3/27 - test/tweak bluetooth controller
-Spring Break
-4/10 - “Launches + data collection”
-	Fly drone around
-4/17 - fly it some more
-4/24 - show off / brag
-5/1 - “Analyze data + finalize documentation”
 
+1/3 - CAD - design brackets + cages for motors and brackets for arms. Code - Start getting motors to work
+
+1/9 - CAD - finalize design, maybe cut/print. Code - PID
+
+1/17 - CAD - Cut/print, assemble drone. Code - PID
+
+1/24 - learn how to make a circuit board and design it. Continue working on PID
+
+1/30 - print circuit board and wire everything. Finish PID
+
+2/6 - See if it works
+
+2/13 - testing, tweaking coding
+
+2/21 - testing and tweaking
+
+2/27 - “Design refinement and final tweaks”
+
+3/6 - add bluetooth
+
+3/13 - add bluetooth
+
+3/20 - add bluetooth
+
+3/27 - test/tweak bluetooth controller
+
+Spring Break
+
+4/10 - Fly drone around
+
+4/17 - fly it some more
+
+4/24 - show off / brag
+
+5/1 - “Analyze data + finalize documentation”
