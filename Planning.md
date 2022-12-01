@@ -52,10 +52,13 @@ PID
 
 ### Schedule
 11/28 - finish planning, research motors, aerodynamics, etc
+
 12/5 - discuss + order propellers, start working on CAD and code
 	Initial wiring for code testing
+	
 12/12 - CAD - finish main drone body
-Code - Start prototyping first flight functions - vertical, horizontal, spinning movement
+	Code - Start prototyping first flight functions - vertical, horizontal, spinning movement
+
 Winter Break
 1/3 - “Initial CAD + Code” 
 CAD - design brackets + cages for motors and brackets for arms
