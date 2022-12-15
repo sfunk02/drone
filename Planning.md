@@ -32,9 +32,9 @@ Rotation - two types of propellers used to cancel out torque - 1 and 3 are one t
 &nbsp;
 
 ### What We Need to Learn
-Wireless connection (bluetooth?)
-Wireless remote/controller
-PID
+* Wireless connection (bluetooth?)
+* Wireless remote/controller
+* PID
 
 &nbsp;
 
