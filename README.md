@@ -12,4 +12,4 @@ My partner and I decided that a drone would be a reasonably challenging way to a
 
 ## Planning_Stage
 
-[PlanningDocument](Planning.md)
+[Planning Document](Planning.md)
