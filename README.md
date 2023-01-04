@@ -13,3 +13,9 @@ My partner and I decided that a drone would be a reasonably challenging way to a
 ## Planning_Stage
 
 [Planning Document](Planning.md)
+
+### CAD
+
+The following CAD sketches were made in [Onshape](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6). 
+
+<img src="images/Arm.png" alt="Arm.png" width="400" height="200"><img src="images/ArmBottom.png" alt="ArmBottom.png" width="400" height="200">
