@@ -20,4 +20,8 @@ The following CAD sketches were made in [Onshape](https://cvilleschools.onshape.
 
 <img src="images/Arm.png" alt="Arm.png" width="330" height="250"><img src="images/ArmBottom.png" alt="ArmBottom.png" width="330" height="250">
 
+The arm is designed to be lightweight and stable. It accomplishes this with a tapered, hollowed out design. It has a cylinder on the end to fit the motor which acts secondarily as a foot with a small cut-out for wiring to fit through.
+
 <img src="images/Base.png" alt="Base.png" width="330" height="250"><img src="images/Drone.png" alt="Drone.png" width="330" height="250">
+
+The base is sized to fit our circuit board of components, which includes a Raspberry Pi Pico, two motor h-bridges, an accelerometer/gyro, and a PowerBoost. The CAD assembly allowed me to measure between the arms and make sure there was space to fit the LiPo battery underneath. The four holes in the middle of the base allow the battery to be tied to the drone.
