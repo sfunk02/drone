@@ -16,25 +16,27 @@ Central platform will hold Pico, circuit board, and battery. Four arms will exte
 &nbsp;
 
 ### Code 
-Need to connect to controller
-Initiate motors
-Collect accelerometer data
+Need to: 
+* Connect to controller
+* Initiate motors
+* Collect accelerometer data
+
 While true:
-Check for input from controller - > move based on input
-Constant balancing - make force of propellers equal to force of gravity
+* Check for input from controller - > move based on input
+* Constant balancing - make force of propellers equal to force of gravity
 
 Need several functions - rotate, move up and down, tilt
-Move up - force of propellers greater than force of gravity - higher motor speed
-Move down - force of propellers less than force of gravity - lower motor speed
-Tilt - allows to move laterally - two motors at higher speed than others
-Rotation - two types of propellers used to cancel out torque - 1 and 3 are one type, 2 and 4 are another. These two types rotate in different directions to cancel out torque. To rotate the drone, one of the types of propellers have to spin at a higher speed than the other
+* Move up - force of propellers greater than force of gravity - higher motor speed
+* Move down - force of propellers less than force of gravity - lower motor speed
+* Tilt - allows to move laterally - two motors at higher speed than others
+* Rotation - two types of propellers used to cancel out torque - 1 and 3 are one type, 2 and 4 are another. These two types rotate in different directions to cancel out torque. To rotate the drone, one of the types of propellers have to spin at a higher speed than the other
 
 &nbsp;
 
 ### What We Need to Learn
-Wireless connection (bluetooth?)
-Wireless remote/controller
-PID
+* Wireless connection (bluetooth?)
+* Wireless remote/controller
+* PID
 
 &nbsp;
 
