@@ -1,24 +1,10 @@
-# drone
+# Drone
 
-This is the repository for Sam and Paul's Engineering 4 project, which was built during the 2022-23 school year.
-
-## Table of Contents
-* [Introduction](#introduction)
-* [Design](#design)
-* [Code Prototypes](#code-prototypes)
-* [CAD](#cad)
-
-[//]: # (Need more here on my part -- probably an entry on final motor control code after dealing w/PID and another one on remote control)
+## by Sam Funk and Paul Schakel
 
 <br>
-<br>
 
-## Additional Documentation
-
-[Planning Document](docs/Planning.md)
-
-<br>
-<br>
+####[Drone 1.0](https://github.com/sfunk02/drone/edit/main/README.md#drone-10)[Drone 2.0](https://github.com/sfunk02/drone/edit/main/README.md#drone-20)
 
 ## Introduction
 
@@ -30,44 +16,75 @@ The goal of this project was to create a drone using a Raspberry Pi Pico. The as
 
 We decided that a drone would be a reasonably challenging way to accomplish this task.
 
-<br>
+### Project [Planning](docs/Planning.md)
 
-## Tools Used
+The initial design...
 
-CAD - [Onshape](https://www.onshape.com/en/)
+### Tools Used
 
-Code - [VS Code](https://code.visualstudio.com/)
+* CAD - [Onshape](https://www.onshape.com/en/)
+* Code - [VS Code](https://code.visualstudio.com/)
+* Wiring Diagram - [Fritzing](https://fritzing.org/)
 
-Wiring Diagram - [Fritzing](https://fritzing.org/)
+### Code Prototypes
 
-<br>
-<br>
+To make sure we didn't get ahead of ourselves, we created prototypes of the separate parts of the project so that we could test the components before assembling the whole drone:
 
-## Design
-
-[//]: # (Talk about how we took inspiration from the Tello drones and what our early design ideas were)
-
-<br>
-
-## Code Prototypes
-
-To make sure we didn't get ahead of ourselves, we created prototypes of the separate parts of the project so that we could test the components before assembling the whole drone. 
-
-### List of Prototypes
-* [Accelerometer](/code/prototypes/accelerometer.py)
-* [DRV8833](/code/prototypes/drv8833.py)
-* [TB6612FNG](/code/prototypes/tb6612fng.py)
+* [MPU6050 (Accelerometer)](/code/prototypes/accelerometer.py)
+* [DRV8833 (Old H-bridge)](/code/prototypes/drv8833.py)
+* [TB6612FNG (New H-bridge)](/code/prototypes/tb6612fng.py)
 
 [//]: # (Will add descriptions and go more into detail about the troubles we had with h-bridges)
 
-## CAD
+<br>
+<br>
 
-The following CAD sketches were made in [Onshape](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6). 
+## Drone 1.0
 
+### Bill of Materials
+
+* 
+* 
+* 
+
+### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
+
+#### Arm
 <img src="docs/images/Arm.png" alt="Arm.png" width="330" height="250"><img src="docs/images/ArmBottom.png" alt="ArmBottom.png" width="330" height="250">
 
 The arm is designed to be lightweight and stable. It accomplishes this with a tapered, hollowed out design. It has a cylinder on the end to fit the motor which acts secondarily as a foot with a small cut-out for wiring to fit through.
 
+#### Base
 <img src="docs/images/Base.png" alt="Base.png" width="330" height="250"><img src="docs/images/Drone.png" alt="Drone.png" width="330" height="250">
 
 The base is sized to fit our circuit board of components, which includes a Raspberry Pi Pico, two motor h-bridges, an accelerometer/gyro, and a PowerBoost. The CAD assembly allowed me to measure between the arms and make sure there was space to fit the LiPo battery underneath. The four holes in the middle of the base allow the battery to be tied to the drone.
+
+### Code
+
+### Images
+
+### Issues
+
+<br>
+<br>
+
+## Drone 2.0
+
+### Bill of Materials
+
+* 
+* 
+* 
+
+### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
+
+#### Frame
+<img src="docs/images/Frame.png" alt="Frame.png" width="330" height="250"><img src="docs/images/Frame2.png" alt="Frame2.png" width="330" height="250">
+
+The new frame design...
+
+### Code
+
+### Images
+
+### Issues
