@@ -32,8 +32,6 @@ To make sure we didn't get ahead of ourselves, we created prototypes of the sepa
 * [DRV8833 (Old H-bridge)](/code/prototypes/drv8833.py)
 * [TB6612FNG (New H-bridge)](/code/prototypes/tb6612fng.py)
 
-[//]: # (Will add descriptions and go more into detail about the troubles we had with h-bridges)
-
 <br>
 <br>
 
@@ -41,9 +39,18 @@ To make sure we didn't get ahead of ourselves, we created prototypes of the sepa
 
 ### Bill of Materials
 
-* 
-* 
-* 
+* Raspberry Pi Pico
+* old battery
+* x2 old h-bridges
+* MPU6050 (Accelerometer)
+* PowerBoost
+* acrylic
+* ABS (3D print material)
+* x4 Tello motors
+* x4 femal JST connectors
+* circuit board
+* wires and solder
+* hardware to attach arms and base
 
 ### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
 
@@ -59,9 +66,15 @@ The base is sized to fit our circuit board of components, which includes a Raspb
 
 ### Code
 
+Link to code if possible -- what did it do, what didn't work
+
 ### Images
 
+<img src="docs/images/Drone1Top.png" alt="Drone1Top.png" width="330" height="250"><img src="docs/images/Drone1Bottom.png" alt="Drone1Bottom.png" width="330" height="250">
+
 ### Issues
+
+Too heavy, not enough current going to motors - caused by battery, PowerBoost, and h-bridges
 
 <br>
 <br>
@@ -70,9 +83,16 @@ The base is sized to fit our circuit board of components, which includes a Raspb
 
 ### Bill of Materials
 
-* 
-* 
-* 
+* Raspberry Pi Pico
+* new battery
+* x2 new h-bridges
+* MPU6050 (Accelerometer
+* ABS (3D print material)
+* x4 Tello motors
+* x4 femal JST connectors
+* circuit board
+* wires and solder
+* hardware to attach arms and base
 
 ### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
 
@@ -85,7 +105,11 @@ The new frame design...
 
 ### Images
 
+<img src="docs/images/Drone2Top.png" alt="Drone2Top.png" width="330" height="250"><img src="docs/images/Drone2Bottom.png" alt="Drone2Bottom.png" width="330" height="250">
+
 ### Issues
+
+Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins requiring some re-soldering
 
 <br>
 <br>
