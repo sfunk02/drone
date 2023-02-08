@@ -71,7 +71,7 @@ Link to code if possible -- what did it do, what didn't work. Comment code!!
 
 ### Images
 
-<img src="docs/images/Drone1Top.jpg" alt="Drone1Top.jpg" width="330" height="250"><img src="docs/images/Drone1Bottom.jpg" alt="Drone1Bottom.jpg" width="330" height="250">
+<img src="docs/images/Drone1Top.jpg" alt="Drone1Top.jpg" width="200" height="115"><img src="docs/images/Drone1Bottom.jpg" alt="Drone1Bottom.jpg" width="200" height="115">
 
 ### Issues
 
