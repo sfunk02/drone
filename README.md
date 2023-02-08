@@ -2,8 +2,6 @@
 
 ## by Sam Funk and Paul Schakel
 
-<br>
-
 #### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways)
 
 ## Introduction
