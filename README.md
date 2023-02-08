@@ -49,6 +49,17 @@ Wiring Diagram - [Fritzing](https://fritzing.org/)
 
 <br>
 
+## Code Prototypes
+
+To make sure we didn't get ahead of ourselves, we created prototypes of the separate parts of the project so that we could test the components before assembling the whole drone. 
+
+### List of Prototypes
+* [Accelerometer](/code/prototypes/accelerometer.py)
+* [DRV8833](/code/prototypes/drv8833.py)
+* [TB6612FNG](/code/prototypes/tb6612fng.py)
+
+[//]: # (Will add descriptions and go more into detail about the troubles we had with h-bridges)
+
 ## CAD
 
 The following CAD sketches were made in [Onshape](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6). 
