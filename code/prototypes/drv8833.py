@@ -1,3 +1,6 @@
+# Paul Schakel
+# Prototype code for the DRV8833 H-Bridge board from Adafruit
+
 from adafruit_motor import motor
 import board
 import pwmio
