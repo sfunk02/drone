@@ -94,6 +94,10 @@ Too heavy, not enough current going to motors - caused by battery, PowerBoost, a
 * wires and solder
 * hardware to attach arms and base
 
+Changes:
+
+We eliminated the PowerBoost and wired our new battery directly to the RPi Pico and h-bridges to bypass any current limiting. No acrylic was needed because the new design fits the circuit board directly to the ABS frame.
+
 ### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
 
 #### Frame
