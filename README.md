@@ -28,9 +28,9 @@ The initial design...
 
 To make sure we didn't get ahead of ourselves, we created prototypes of the separate parts of the project so that we could test the components before assembling the whole drone:
 
-* [MPU6050 (Accelerometer)](/code/prototypes/accelerometer.py)
-* [DRV8833 (Old H-bridge)](/code/prototypes/drv8833.py)
-* [TB6612FNG (New H-bridge)](/code/prototypes/tb6612fng.py)
+* [MPU6050 (accelerometer)](/code/prototypes/accelerometer.py)
+* [DRV8833 (old H-bridge)](/code/prototypes/drv8833.py)
+* [TB6612FNG (new H-bridge)](/code/prototypes/tb6612fng.py)
 
 <br>
 <br>
@@ -40,14 +40,15 @@ To make sure we didn't get ahead of ourselves, we created prototypes of the sepa
 ### Bill of Materials
 
 * Raspberry Pi Pico
-* old battery
-* x2 old h-bridges
-* MPU6050 (Accelerometer)
+* 2000mAh LiPo battery
+* x2 DRV8833 (old H-bridge)
+* MPU6050 (accelerometer)
 * PowerBoost
 * acrylic
 * ABS (3D print material)
 * x4 Tello motors
-* x4 femal JST connectors
+* x4 Tello propellers
+* x4 1.25mm female JST connectors
 * circuit board
 * wires and solder
 * hardware to attach arms and base
@@ -84,19 +85,20 @@ Too heavy, not enough current going to motors - caused by battery, PowerBoost, a
 ### Bill of Materials
 
 * Raspberry Pi Pico
-* new battery
-* x2 new h-bridges
-* MPU6050 (Accelerometer
+* 1100mAh Tello battery
+* x2 TB6612FNG (new H-bridge)
+* MPU6050 (accelerometer)
 * ABS (3D print material)
 * x4 Tello motors
-* x4 femal JST connectors
+* x4 Tello propellers
+* x4 1.25mm female JST connectors
 * circuit board
 * wires and solder
-* hardware to attach arms and base
+* hardware to attach frame to circuit board
 
 Changes:
 
-We eliminated the PowerBoost and wired our new battery directly to the RPi Pico and h-bridges to bypass any current limiting. No acrylic was needed because the new design fits the circuit board directly to the ABS frame.
+We eliminated the PowerBoost and wired our new battery directly to the RPi Pico and H-bridges to bypass any current limiting. No acrylic was needed because the new design fits the circuit board directly to the ABS frame. We used less hardware because the arms didn't need to be attached separately (see images below).
 
 ### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
 
