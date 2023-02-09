@@ -69,6 +69,10 @@ The base is sized to fit our circuit board of components, which includes a Raspb
 
 Link to code if possible -- what did it do, what didn't work. Comment code!!
 
+### Wiring
+
+<img src="docs/images/wiring_1.0.png" width=600px alt="Drone1Wiring">
+
 ### Images
 
 <img src="docs/images/Drone1Top.jpg" alt="Drone1Top.jpg" width="300" height="172"><img src="docs/images/Drone1Bottom.jpg" alt="Drone1Bottom.jpg" width="300" height="172">
