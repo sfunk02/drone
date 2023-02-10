@@ -79,7 +79,7 @@ Link to code if possible -- what did it do, what didn't work. Comment code!!
 
 ### Issues
 
-Too heavy, not enough current going to motors - caused by battery, PowerBoost, and h-bridges
+Between the sheet of acrylic, large battery, and unnecessary amount of hardware, our first design was too heavy. We used Tello motors, but our drone weighed almost twice as much as a Tello. We also noticed that our motors were not spinning fast enough when powered through our drone. After a lot of troubleshooting and testing, we determined that this was due to a combination of our battery, PowerBoost, and H-bridges. Both the PowerBoost and the H-bridges were limiting current, and the battery itself couldn't output current fast enough with everything else bypassed.
 
 <br>
 <br>
