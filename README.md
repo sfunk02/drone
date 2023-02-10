@@ -16,7 +16,7 @@ We decided that a drone would be a reasonably challenging way to accomplish this
 
 ### Project [Planning](docs/Planning.md)
 
-The initial design was derived from a DJI Tello drone. We wanted the drone to be as compact and small as possible to reduce weight so it could be lifted by our Tello motors. We intend to add cages for the propellers to add a level of safety to the drone, but they were not included in our first prototype. The nature of the project is to make something fly with a Raspberry Pi Pico, so that is the microcontroller we chose to use. We decided to power our prototype with a 2000mAh LiPo battery and two DRV8833 H-bridges, because we have a surplus of both in our engineering lab.
+The initial design was derived from a DJI Tello drone. We wanted the drone to be as compact and small as possible to reduce weight so it could be lifted by our Tello motors. We intend to add cages for the propellers to add a level of safety to the drone, but they were not included in our first prototype. The nature of the project is to make something fly with a Raspberry Pi Pico, so that is the microcontroller we chose to use. We decided to power our prototype with a 2000mAh LiPo battery and two DRV8833 H-bridges because we have a surplus of both in our engineering lab.
 
 ### Tools Used
 
