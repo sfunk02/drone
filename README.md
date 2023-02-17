@@ -2,7 +2,7 @@
 
 ## by Sam Funk and Paul Schakel
 
-#### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways)
+#### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways) | [Drone 3.0](https://github.com/sfunk02/drone#drone-30)
 
 ## Introduction
 
@@ -120,6 +120,39 @@ The new frame design...
 ### Issues
 
 Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins requiring some re-soldering
+
+<br>
+<br>
+
+## Drone 3.0
+
+### Bill of Materials
+
+* Raspberry Pi Pico
+* 1100mAh Tello battery
+* x4 IRLB8721 MOSFETs
+* MPU6050 (accelerometer)
+* ABS (3D print material)
+* x4 Tello motors
+* x4 Tello propellers
+* x4 1.25mm female JST connectors
+* circuit board
+* wires and solder
+* hardware to attach frame to circuit board
+
+Changes:
+
+We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. 
+
+### Code
+
+### Images
+
+<img src="docs/images/Drone3Top.png" alt="Drone3Top.png" width="330" height="250"><img src="docs/images/Drone3Bottom.png" alt="Drone3Bottom.png" width="330" height="250">
+
+### Issues
+
+Remains to be seen...
 
 <br>
 <br>
