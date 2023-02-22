@@ -115,7 +115,7 @@ The new frame design...
 
 ### Images
 
-<img src="docs/images/Drone2Top.png" alt="Drone2Top.png" width="330" height="250"><img src="docs/images/Drone2Bottom.png" alt="Drone2Bottom.png" width="330" height="250">
+<img src="docs/images/Drone2Top.jpg" alt="Drone2Top.jpg" width="330" height="250"><img src="docs/images/Drone2Bottom.jpg" alt="Drone2Bottom.jpg" width="330" height="250">
 
 ### Issues
 
