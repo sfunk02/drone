@@ -1,5 +1,5 @@
 # Paul Schakel
-# Final code for the drone -- STILL A WORK IN PROGRESS AT THE MOMENT
+# Final code for the drone 2.0 using the TB6612FNG
 
 from adafruit_motor import motor
 import board
@@ -19,10 +19,10 @@ C1 = board.GP18
 C2 = board.GP19
 D1 = board.GP20
 D2 = board.GP21
-PWMA = board.GP16
-PWMB = board.GP17
-PWMC = board.GP26
-PWMD = board.GP27
+PWMA = board.GP27
+PWMB = board.GP26
+PWMC = board.GP16
+PWMD = board.GP17
 
 motorA_pin1 = digitalio.DigitalInOut(A1)
 motorA_pin1.direction = digitalio.Direction.OUTPUT
@@ -71,5 +71,5 @@ while True:
     motorD_pwm.duty_cycle = 65535 // 2
 
     #time.sleep(0.2)
-    print(f"x: {round(mpu.acceleration[0], 3)} y: {round(mpu.acceleration[1], 3)} z: {round(mpu.acceleration[2], 3)}")
+    #print(f"x: {round(mpu.acceleration[0], 3)} y: {round(mpu.acceleration[1], 3)} z: {round(mpu.acceleration[2], 3)}")
     #motor1.throttle = mpu.acceleration[1] / 10.0
