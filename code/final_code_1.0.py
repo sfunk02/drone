@@ -4,7 +4,7 @@
 from adafruit_motor import motor
 import board
 import busio
-#import adafruit_mpu6050
+import adafruit_mpu6050
 import pwmio
 import time 
 
@@ -36,36 +36,21 @@ pwmD2 = pwmio.PWMOut(D2, frequency=PWM_FREQ)
 motor4 = motor.DCMotor(pwmD1, pwmD2)
 motor4.decay_mode = (DECAY_MODE)
 
-#sda_pin = board.GP14
-#scl_pin = board.GP15
-#i2c = busio.I2C(scl_pin, sda_pin)
-#
-#mpu = adafruit_mpu6050.MPU6050(i2c, address=0x68)
+sda_pin = board.GP14
+scl_pin = board.GP15
+i2c = busio.I2C(scl_pin, sda_pin)
 
-throttle_speed = 0
+mpu = adafruit_mpu6050.MPU6050(i2c, address=0x68)
+
+throttle_speed = 1
 
 while True:
-    #while throttle_speed < 0.5:
-    #    throttle_speed += 0.1
-    #    motor1.throttle = throttle_speed
-    #    motor2.throttle = throttle_speed
-    #    motor3.throttle = -throttle_speed
-    #    motor4.throttle = -throttle_speed
-    #    print(throttle_speed)
-    #    time.sleep(1)
-
-    motor1.throttle = 1
-    #motor2.throttle = 1
-    #motor3.throttle = -1
-    #motor4.throttle = -1
+    motor1.throttle = throttle_speed
+    motor2.throttle = throttle_speed
+    motor3.throttle = -throttle_speed
+    motor4.throttle = -throttle_speed
     print(throttle_speed)
 
-    # time.sleep(2)
-    # motor1.throttle = -1
-    # print(motor1.throttle)
-    # print(motor1.throttle)
-    # time.sleep(20)
-
-    #time.sleep(0.2)
-    #print(f"x: {round(mpu.acceleration[0], 3)} y: {round(mpu.acceleration[1], 3)} z: {round(mpu.acceleration[2], 3)}")
-    #motor1.throttle = mpu.acceleration[1] / 10.0
+    time.sleep(0.2)
+    print(f"x: {round(mpu.acceleration[0], 3)} y: {round(mpu.acceleration[1], 3)} z: {round(mpu.acceleration[2], 3)}")
+    motor1.throttle = mpu.acceleration[1] / 10.0

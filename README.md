@@ -2,7 +2,7 @@
 
 ## by Sam Funk and Paul Schakel
 
-#### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways)
+#### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Drone 3.0](https://github.com/sfunk02/drone#drone-30) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways)
 
 ## Introduction
 
@@ -16,7 +16,7 @@ We decided that a drone would be a reasonably challenging way to accomplish this
 
 ### Project [Planning](docs/Planning.md)
 
-The initial design...
+The initial design was derived from a DJI Tello drone. We wanted the drone to be as compact and small as possible to reduce weight so it could be lifted by our Tello motors. We intend to add cages for the propellers to add a level of safety to the drone, but they were not included in our first prototype. The nature of the project is to make something fly with a Raspberry Pi Pico, so that is the microcontroller we chose to use. We decided to power our prototype with a 2000mAh LiPo battery and two DRV8833 H-bridges because we have a surplus of both in our engineering lab.
 
 ### Tools Used
 
@@ -67,7 +67,7 @@ The base is sized to fit our circuit board of components, which includes a Raspb
 
 ### Code
 
-Link to code if possible -- what did it do, what didn't work. Comment code!!
+[Link to Code](code/final_code_1.0.py)
 
 ### Wiring
 
@@ -79,7 +79,7 @@ Link to code if possible -- what did it do, what didn't work. Comment code!!
 
 ### Issues
 
-Too heavy, not enough current going to motors - caused by battery, PowerBoost, and h-bridges
+Between the sheet of acrylic, large battery, and unnecessary amount of hardware, our first design was too heavy. We used Tello motors, but our drone weighed almost twice as much as a Tello. We also noticed that our motors were not spinning fast enough when powered through our drone. After a lot of troubleshooting and testing, we determined that this was due to a combination of our battery, PowerBoost, and H-bridges. Both the PowerBoost and the H-bridges were limiting current, and the battery itself couldn't output current fast enough with everything else bypassed.
 
 <br>
 <br>
@@ -113,13 +113,58 @@ The new frame design...
 
 ### Code
 
+[Link to Code](code/final_code_2.0.py)
+
+### Wiring
+
+<img src="docs/images/wiring_2.0.png" width=600px alt="Drone2Wiring">
+
 ### Images
 
-<img src="docs/images/Drone2Top.png" alt="Drone2Top.png" width="330" height="250"><img src="docs/images/Drone2Bottom.png" alt="Drone2Bottom.png" width="330" height="250">
+<img src="docs/images/Drone2Top.jpg" alt="Drone2Top.jpg" width="330" height="250"><img src="docs/images/Drone2Bottom.jpg" alt="Drone2Bottom.jpg" width="330" height="250">
 
 ### Issues
 
 Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins requiring some re-soldering
+
+<br>
+<br>
+
+## Drone 3.0
+
+### Bill of Materials
+
+* Raspberry Pi Pico
+* 1100mAh Tello battery
+* x4 IRLB8721 MOSFETs
+* MPU6050 (accelerometer)
+* ABS (3D print material)
+* x4 Tello motors
+* x4 Tello propellers
+* x4 1.25mm female JST connectors
+* circuit board
+* wires and solder
+* hardware to attach frame to circuit board
+
+Changes:
+
+We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with N-Channel MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. 
+
+### Code
+
+[Link to Code](code/final_code_3.0.py)
+
+### Wiring
+
+<img src="docs/images/wiring_3.0.png" width=600px alt="Drone3Wiring">
+
+### Images
+
+<img src="docs/images/Drone3Top.png" alt="Drone3Top.png" width="330" height="250"><img src="docs/images/Drone3Bottom.png" alt="Drone3Bottom.png" width="330" height="250">
+
+### Issues
+
+Remains to be seen...
 
 <br>
 <br>
