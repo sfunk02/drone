@@ -7,10 +7,10 @@ import adafruit_mpu6050
 import busio
 import time 
 
-MOTOR_1 = board.GP20
+MOTOR_1 = board.GP11
 MOTOR_2 = board.GP21
-MOTOR_3 = board.GP10
-MOTOR_4 = board.GP11
+MOTOR_3 = board.GP20
+MOTOR_4 = board.GP10
 motor1_pwm = pwmio.PWMOut(MOTOR_1, frequency=1000)
 motor2_pwm = pwmio.PWMOut(MOTOR_2, frequency=1000)
 motor3_pwm = pwmio.PWMOut(MOTOR_3, frequency=1000)
