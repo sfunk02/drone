@@ -67,7 +67,7 @@ The base is sized to fit our circuit board of components, which includes a Raspb
 
 ### Code
 
-Link to code if possible -- what did it do, what didn't work. Comment code!!
+[Link to Code](code/final_code_1.0.py)
 
 ### Wiring
 
@@ -113,6 +113,12 @@ The new frame design...
 
 ### Code
 
+[Link to Code](code/final_code_2.0.py)
+
+### Wiring
+
+<img src="docs/images/wiring_2.0.png" width=600px alt="Drone2Wiring">
+
 ### Images
 
 <img src="docs/images/Drone2Top.jpg" alt="Drone2Top.jpg" width="330" height="250"><img src="docs/images/Drone2Bottom.jpg" alt="Drone2Bottom.jpg" width="330" height="250">
@@ -142,9 +148,15 @@ Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins
 
 Changes:
 
-We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. 
+We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with N-Channel MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. 
 
 ### Code
+
+[Link to Code](code/final_code_3.0.py)
+
+### Wiring
+
+<img src="docs/images/wiring_3.0.png" width=600px alt="Drone3Wiring">
 
 ### Images
 
