@@ -22,6 +22,11 @@ i2c = busio.I2C(scl_pin, sda_pin)
 
 mpu = adafruit_mpu6050.MPU6050(i2c, address=0x68)
 
+last_update = time.monotonic()
+integral_pitch = 0
+integral_roll = 0
+integral_yaw = 0
+
 Kp = 1
 Ki = 1
 Kd = 1
@@ -29,7 +34,11 @@ Kd = 1
 setpoint = 0
 
 while True:
+    now = time.monotonic()
+    dt = now - last_update
     error_x = setpoint - mpu.acceleration[0]
+
+
     error_y = setpoint - mpu.acceleration[1]
 
     #motor1_pwm.duty_cycle = 65535  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
