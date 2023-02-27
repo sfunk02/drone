@@ -1,5 +1,5 @@
 # Paul Schakel
-# Prototype for the mosfet
+# Prototype for PID control
 
 import board
 import pwmio
@@ -27,11 +27,17 @@ integral_pitch = 0
 integral_roll = 0
 integral_yaw = 0
 
+throttle = 0
+
 Kp = 1
 Ki = 1
 Kd = 1
 
 setpoint = 0
+
+pitch_PID = 0
+roll_PID = 0
+yaw_PID = 0
 
 while True:
     now = time.monotonic()
