@@ -5,7 +5,8 @@ import board
 import pwmio
 import adafruit_mpu6050
 import busio
-import time 
+import time
+import math
 
 MOTOR_1 = board.GP20
 MOTOR_2 = board.GP21
@@ -33,6 +34,8 @@ Kp = 1
 Ki = 1
 Kd = 1
 
+pitch_force = 0
+
 setpoint = 0
 
 pitch_PID = 0
@@ -40,10 +43,18 @@ roll_PID = 0
 yaw_PID = 0
 
 while True:
+    x = mpu.acceleration[0]
+    y = mpu.acceleration[1]
+    if x == 0:
+        x = 0.000001
+    initial_angle = math.degrees(math.atan(y/x))
+    initial_intensity = math.sqrt((x**2) + (y**2))
+
+    # need to account for angles beyond 90
+
     now = time.monotonic()
     dt = now - last_update
-    error_x = setpoint - mpu.acceleration[0]
-
+    
 
     error_y = setpoint - mpu.acceleration[1]
 
@@ -53,4 +64,6 @@ while True:
     #motor4_pwm.duty_cycle = 65535  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
 
     time.sleep(0.07)
-    print(f"x: {round(mpu.acceleration[0], 3)} y: {round(mpu.acceleration[1], 3)} z: {round(mpu.acceleration[2], 3)}")
+    print("angle: " + str(initial_angle))
+    print("initial_intensity: " + str(initial_intensity))
+    #print(f"x: {round(mpu.acceleration[0], 3)} y: {round(mpu.acceleration[1], 3)} z: {round(mpu.acceleration[2], 3)}")
