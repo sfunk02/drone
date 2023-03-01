@@ -24,15 +24,28 @@ i2c = busio.I2C(scl_pin, sda_pin)
 mpu = adafruit_mpu6050.MPU6050(i2c, address=0x68)
 
 last_update = time.monotonic()
-integral_pitch = 0
-integral_roll = 0
-integral_yaw = 0
-
-throttle = 0
 
 Kp = 1
 Ki = 1
 Kd = 1
+
+error_pitch = 0
+error_roll = 0
+error_yaw = 0
+
+last_error_pitch = 0
+last_error_roll = 0
+last_error_yaw = 0
+
+integral_pitch = 0
+integral_roll = 0
+integral_yaw = 0
+
+derivative_pitch = 0
+derivative_roll = 0
+derivative_yaw = 0
+
+throttle = 0
 
 pitch_force = 0
 
@@ -47,23 +60,71 @@ while True:
     y = mpu.acceleration[1]
     if x == 0:
         x = 0.000001
-    initial_angle = math.degrees(math.atan(y/x))
-    initial_intensity = math.sqrt((x**2) + (y**2))
+    angle = math.degrees(math.atan(y/x))
+    intensity = math.sqrt((x**2) + (y**2))
 
-    # need to account for angles beyond 90
+    # Find quadrant and make angle between 0 and 360
+    if x < 0 and y > 0: # Q2
+        angle += 180
+    elif x < 0 and y < 0: # Q3
+        angle += 180
+    elif x > 0 and y < 0: #Q4
+        angle += 360
 
     now = time.monotonic()
     dt = now - last_update
     
+    # Find errors for pitch
+    if angle > 15 and angle < 75:
+        error_pitch = -1 * (setpoint - intensity)
+    elif angle > 195 and angle < 255:
+        error_pitch = setpoint - intensity
+    else:
+        error_pitch = 0
 
-    error_y = setpoint - mpu.acceleration[1]
+    # Find errors for roll
+    if angle > 105 and angle < 165:
+        error_roll = -1 * (setpoint - intensity)
+    elif angle > 285 and angle < 345:
+        error_roll = setpoint - intensity
+    else:
+        error_roll = 0
 
-    #motor1_pwm.duty_cycle = 65535  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
-    #motor2_pwm.duty_cycle = 65535  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
-    #motor3_pwm.duty_cycle = 65535  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
-    #motor4_pwm.duty_cycle = 65535  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+    # Find errors for pitch and roll at the same time for specific angles
+    if angle >= 345 or angle <= 15:
+        error_pitch = -1 * (setpoint - intensity)
+        error_roll = setpoint - intensity
+    if angle >= 75 and angle <= 105:
+        error_pitch = -1 * (setpoint - intensity)
+        error_roll = error_pitch
+    if angle >= 165 and angle <= 195:
+        error_pitch = setpoint - intensity
+        error_roll = -1 * (setpoint - intensity)
+    if angle >= 255 and angle <= 285:
+        error_pitch = setpoint - intensity
+        error_roll = setpoint - intensity
+
+    integral_pitch = integral_pitch + dt * error_pitch
+    integral_roll = integral_roll + dt * error_roll
+
+    derivative_pitch = (error_pitch - last_error_pitch)/dt
+    derivative_roll = (error_roll - last_error_roll)/dt
+
+    pitch_PID =  Kp * error_pitch + Ki * integral_pitch + Kd * derivative_pitch
+    roll_PID = Kp * error_roll + Ki * integral_roll + Kd * derivative_roll
+
+    #motor1_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+    #motor2_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+    #motor3_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+    #motor4_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+
+    last_error_pitch = error_pitch
+    last_error_roll = error_roll
+    last_update = now
 
     time.sleep(0.07)
-    print("angle: " + str(initial_angle))
-    print("initial_intensity: " + str(initial_intensity))
+    print("angle: " + str(angle))
+    print("initial_intensity: " + str(intensity))
+    print("pitch_PID: " + str(pitch_PID))
+    print("roll_PID: " + str(roll_PID))
     #print(f"x: {round(mpu.acceleration[0], 3)} y: {round(mpu.acceleration[1], 3)} z: {round(mpu.acceleration[2], 3)}")
