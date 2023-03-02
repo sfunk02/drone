@@ -25,9 +25,9 @@ mpu = adafruit_mpu6050.MPU6050(i2c, address=0x68)
 
 last_update = time.monotonic()
 
-Kp = 1
-Ki = 1
-Kd = 1
+Kp = 0.5
+Ki = 0.01
+Kd = 0.01
 
 error_pitch = 0
 error_roll = 0
@@ -74,35 +74,38 @@ while True:
     now = time.monotonic()
     dt = now - last_update
     
-    # Find errors for pitch
-    if angle > 15 and angle < 75:
-        error_pitch = -1 * (setpoint - intensity)
-    elif angle > 195 and angle < 255:
-        error_pitch = setpoint - intensity
-    else:
-        error_pitch = 0
+    ## Find errors for pitch
+    #if angle > 0 and angle < 180:
+    #    error_pitch = -1 * (setpoint - intensity)
+    #elif angle > 180 and angle < 360:
+    #    error_pitch = setpoint - intensity
+    #else:
+    #    error_pitch = 0
 
-    # Find errors for roll
-    if angle > 105 and angle < 165:
-        error_roll = -1 * (setpoint - intensity)
-    elif angle > 285 and angle < 345:
-        error_roll = setpoint - intensity
-    else:
-        error_roll = 0
+    ## Find errors for roll
+    #if angle > 105 and angle < 165:
+    #    error_roll = -1 * (setpoint - intensity)
+    #elif angle > 285 and angle < 345:
+    #    error_roll = setpoint - intensity
+    #else:
+    #    error_roll = 0
 
-    # Find errors for pitch and roll at the same time for specific angles
-    if angle >= 345 or angle <= 15:
-        error_pitch = -1 * (setpoint - intensity)
-        error_roll = setpoint - intensity
-    if angle >= 75 and angle <= 105:
-        error_pitch = -1 * (setpoint - intensity)
-        error_roll = error_pitch
-    if angle >= 165 and angle <= 195:
-        error_pitch = setpoint - intensity
-        error_roll = -1 * (setpoint - intensity)
-    if angle >= 255 and angle <= 285:
-        error_pitch = setpoint - intensity
-        error_roll = setpoint - intensity
+    ## Find errors for pitch and roll at the same time for specific angles
+    #if angle >= 345 or angle <= 15:
+    #    error_pitch = -1 * (setpoint - intensity)
+    #    error_roll = setpoint - intensity
+    #if angle >= 75 and angle <= 105:
+    #    error_pitch = -1 * (setpoint - intensity)
+    #    error_roll = error_pitch
+    #if angle >= 165 and angle <= 195:
+    #    error_pitch = setpoint - intensity
+    #    error_roll = -1 * (setpoint - intensity)
+    #if angle >= 255 and angle <= 285:
+    #    error_pitch = setpoint - intensity
+    #    error_roll = setpoint - intensity
+
+    error_pitch = setpoint - (intensity * math.cos(angle))
+    error_roll = setpoint - (intensity * math.sin(angle))
 
     integral_pitch = integral_pitch + dt * error_pitch
     integral_roll = integral_roll + dt * error_roll
@@ -113,10 +116,12 @@ while True:
     pitch_PID =  Kp * error_pitch + Ki * integral_pitch + Kd * derivative_pitch
     roll_PID = Kp * error_roll + Ki * integral_roll + Kd * derivative_roll
 
-    #motor1_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
-    #motor2_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
-    #motor3_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
-    #motor4_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+    
+
+    motor1_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+    motor2_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+    motor3_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
+    motor4_pwm.duty_cycle = 65535 // 4  # Cycles the pin with 50% duty cycle (half of 2 ** 16)
 
     last_error_pitch = error_pitch
     last_error_roll = error_roll
@@ -125,6 +130,6 @@ while True:
     time.sleep(0.07)
     print("angle: " + str(angle))
     print("initial_intensity: " + str(intensity))
-    print("pitch_PID: " + str(pitch_PID))
-    print("roll_PID: " + str(roll_PID))
+    print("error_pitch: " + str(error_pitch))
+    print("error_roll: " + str(error_roll))
     #print(f"x: {round(mpu.acceleration[0], 3)} y: {round(mpu.acceleration[1], 3)} z: {round(mpu.acceleration[2], 3)}")
