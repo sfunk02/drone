@@ -100,12 +100,25 @@ while True:
 
     PID_scaler = PID_multiplier * intensity
 
-    # make sure duty_Cycle never goes above 65535
+    motor1_duty_cycle = int(65535 * motor1_baseline - pitch_PID * PID_scaler)
+    motor2_duty_cycle = int(65535 * motor2_baseline) #int(65535 * motor2_baseline + roll_PID * PID_multiplier)
+    motor3_duty_cycle = int(65535 * motor3_baseline + pitch_PID * PID_scaler)
+    motor4_duty_cycle = int(65535 * motor4_baseline)   #int(65535 * motor4_baseline - roll_PID * PID_multiplier)
 
-    motor1_pwm.duty_cycle = int(65535 * motor1_baseline - pitch_PID * PID_scaler)
-    motor2_pwm.duty_cycle = int(65535 * motor2_baseline) #int(65535 * motor2_baseline + roll_PID * PID_multiplier)
-    motor3_pwm.duty_cycle = int(65535 * motor3_baseline + pitch_PID * PID_scaler)
-    motor4_pwm.duty_cycle = int(65535 * motor4_baseline)   #int(65535 * motor4_baseline - roll_PID * PID_multiplier)
+    if motor1_duty_cycle > 65535:
+        motor1_duty_cycle = 65535
+    if motor2_duty_cycle > 65535:
+        motor2_duty_cycle = 65535
+    if motor3_duty_cycle > 65535:
+        motor3_duty_cycle = 65535
+    if motor4_duty_cycle > 65535:
+        motor4_duty_cycle = 65535
+
+
+    motor1_pwm.duty_cycle = motor1_duty_cycle
+    motor2_pwm.duty_cycle = motor2_duty_cycle
+    motor3_pwm.duty_cycle = motor3_duty_cycle
+    motor4_pwm.duty_cycle = motor4_duty_cycle
     last_error_pitch = error_pitch
     last_error_roll = error_roll
     last_update = now
