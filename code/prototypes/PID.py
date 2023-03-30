@@ -25,16 +25,16 @@ sensor = LSM6DSO32(i2c)
 
 last_update = time.monotonic()
 
-Kp = 0.4
-Ki = 0.1
-Kd = 0.01
+Kp = 0.3
+Ki = 0.05
+Kd = 0.3
 
-motor1_baseline = 0.85
-motor2_baseline = 0.8
-motor3_baseline = 0.8
-motor4_baseline = 0.8
+motor1_baseline = .7
+motor2_baseline = .7
+motor3_baseline = .7
+motor4_baseline = .7
 
-PID_multiplier = 700
+PID_multiplier = 800
 
 error_pitch = 0
 error_roll = 0
@@ -70,6 +70,9 @@ while True:
     angle = math.degrees(math.atan(y/x))
     intensity = math.sqrt((x**2) + (y**2))
 
+    if intensity > 9.8:
+        intensity = 9.8
+
     # Find quadrant and make angle between 0 and 360
     if x < 0 and y > 0: # Q2
         angle += 360
@@ -86,8 +89,8 @@ while True:
     if angle > 360:
         angle -= 360
 
-    error_pitch = setpoint - (intensity * math.sin(math.radians(angle)))
-    error_roll = setpoint - (intensity * math.cos(math.radians(angle)))
+    error_pitch = setpoint - (intensity * math.cos(math.radians(angle)))
+    error_roll = setpoint - (intensity * math.sin(math.radians(angle)))
 
     integral_pitch = integral_pitch + dt * error_pitch
     integral_roll = integral_roll + dt * error_roll
@@ -100,21 +103,51 @@ while True:
 
     PID_scaler = PID_multiplier * intensity
 
-    # make sure duty_Cycle never goes above 65535
+    motor1_duty_cycle = int(65535 * motor1_baseline - pitch_PID * PID_scaler)
+    motor2_duty_cycle = int(65535 * motor2_baseline - roll_PID * PID_scaler)
+    motor3_duty_cycle = int(65535 * motor3_baseline + pitch_PID * PID_scaler)
+    motor4_duty_cycle = int(65535 * motor4_baseline + roll_PID * PID_scaler)
 
-    motor1_pwm.duty_cycle = int(65535 * motor1_baseline - pitch_PID * PID_scaler)
-    motor2_pwm.duty_cycle = int(65535 * motor2_baseline) #int(65535 * motor2_baseline + roll_PID * PID_multiplier)
-    motor3_pwm.duty_cycle = int(65535 * motor3_baseline + pitch_PID * PID_scaler)
-    motor4_pwm.duty_cycle = int(65535 * motor4_baseline)   #int(65535 * motor4_baseline - roll_PID * PID_multiplier)
+    if motor1_duty_cycle > 65535:
+        motor1_duty_cycle = 65535
+    if motor2_duty_cycle > 65535:
+        motor2_duty_cycle = 65535
+    if motor3_duty_cycle > 65535:
+        motor3_duty_cycle = 65535
+    if motor4_duty_cycle > 65535:
+        motor4_duty_cycle = 65535
+    if motor1_duty_cycle < 2000:
+        motor1_duty_cycle = 2000
+    if motor2_duty_cycle < 2000:
+        motor2_duty_cycle = 2000
+    if motor3_duty_cycle < 2000:
+        motor3_duty_cycle = 2000
+    if motor4_duty_cycle < 2000:
+        motor4_duty_cycle = 2000
+
+
+    print("\nmotor1_pwm.duty_cycle: " + str(motor1_duty_cycle))
+    print("motor3_pwm.duty_cycle: " + str(motor3_duty_cycle))
+    print("\nmotor2_pwm.duty_cycle: " + str(motor2_duty_cycle))
+    print("motor4_pwm.duty_cycle: " + str(motor4_duty_cycle))
+    print("roll_PID: " + str(roll_PID))
+    print("pitch: " + str(pitch_PID))
+
+    motor1_pwm.duty_cycle = motor1_duty_cycle
+    motor2_pwm.duty_cycle = motor2_duty_cycle
+    motor3_pwm.duty_cycle = motor3_duty_cycle
+    motor4_pwm.duty_cycle = motor4_duty_cycle
     last_error_pitch = error_pitch
     last_error_roll = error_roll
     last_update = now
 
-    time.sleep(0.07)
-    print("angle: " + str(angle))
-    print("PID_scaler: " + str(PID_scaler))
-    print("motor1_pwm.duty_cycle: " + str(motor1_pwm.duty_cycle))
-    print("motor3_pwm.duty_cycle: " + str(motor3_pwm.duty_cycle))
+    time.sleep(.08)
+    #print("\nangle: " + str(angle))
+    #print("pitch_PID: " + str(pitch_PID))
+    #print("integral_pitch: " + str(integral_pitch))
+    #print("derivative_pitch: " + str(derivative_pitch))
+    #print("error_pitch: " + str(error_pitch))
+
     #temp_baseline = float(input("Enter baseline: "))
     #motor1_baseline = temp_baseline
     #motor2_baseline = temp_baseline
