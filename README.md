@@ -137,7 +137,7 @@ Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins
 * Raspberry Pi Pico
 * 1100mAh Tello battery
 * x4 IRLB8721 MOSFETs
-* MPU6050 (accelerometer)
+* LSM_____________ (accelerometer)
 * ABS (3D print material)
 * x4 Tello motors
 * x4 Tello propellers
@@ -148,7 +148,7 @@ Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins
 
 Changes:
 
-We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with N-Channel MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. 
+We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with N-Channel MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. We also switched out our MPU6050 accelerometer for a more accurate ___________.
 
 ### Code
 
@@ -164,7 +164,46 @@ We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and 
 
 ### Issues
 
-Remains to be seen...
+The Pico keeps wiping at seemingly random times, leading us to believe that there is a short somewhere in the circuitry caused by continual movement of the drone. We aren't able to trace the short and decided it would be better to solder a new circuit board. Additionally, the rectangular shape of the drone causes issues with the code for the accelerometer, and the battery is only attached with a rubber band. Drone 4.0 will address all of these problems.
+
+<br>
+<br>
+
+## Drone 4.0
+
+### Bill of Materials
+
+* Raspberry Pi Pico
+* 1100mAh Tello battery
+* x4 IRLB8721 MOSFETs
+* LSM_____________ (accelerometer)
+* ABS (3D print material)
+* x4 Tello motors
+* x4 Tello propellers
+* x4 1.25mm female JST connectors
+* circuit board
+* wires and solder
+* hardware to attach frame to circuit board
+
+Changes:
+
+
+
+### Code
+
+[Link to Code](code/final_code_4.0.py)
+
+### Wiring
+
+<img src="docs/images/wiring_4.0.png" width=600px alt="Drone4Wiring">
+
+### Images
+
+<img src="docs/images/Drone4Top.png" alt="Drone3Top.png" width="330" height="250"><img src="docs/images/Drone4Bottom.png" alt="Drone3Bottom.png" width="330" height="250">
+
+### Issues
+
+
 
 <br>
 <br>
