@@ -2,7 +2,7 @@
 
 ## by Sam Funk and Paul Schakel
 
-#### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Drone 3.0](https://github.com/sfunk02/drone#drone-30) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways)
+#### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Drone 3.0](https://github.com/sfunk02/drone#drone-30) | [Drone 4.0](https://github.com/sfunk02/drone#drone-40) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways)
 
 ## Introduction
 
