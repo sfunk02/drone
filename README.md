@@ -137,7 +137,7 @@ Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins
 * Raspberry Pi Pico
 * 1100mAh Tello battery
 * x4 IRLB8721 MOSFETs
-* LSM_____________ (accelerometer)
+* LSM6DSO (accelerometer)
 * ABS (3D print material)
 * x4 Tello motors
 * x4 Tello propellers
@@ -148,7 +148,7 @@ Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins
 
 Changes:
 
-We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with N-Channel MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. We also switched out our MPU6050 accelerometer for a more accurate ___________.
+We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with N-Channel MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. We also switched out our MPU6050 accelerometer for a more accurate LSM6DSO.
 
 ### Code
 
@@ -160,7 +160,7 @@ We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and 
 
 ### Images
 
-<img src="docs/images/Drone3Top.png" alt="Drone3Top.png" width="330" height="250"><img src="docs/images/Drone3Bottom.png" alt="Drone3Bottom.png" width="330" height="250">
+<img src="docs/images/Drone3Top.jpg" alt="Drone3Top.jpg" width="330" height="250"><img src="docs/images/Drone3Bottom.jpg" alt="Drone3Bottom.jpg" width="330" height="250">
 
 ### Issues
 
