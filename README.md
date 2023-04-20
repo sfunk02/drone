@@ -176,7 +176,7 @@ The Pico keeps wiping at seemingly random times, leading us to believe that ther
 * Raspberry Pi Pico
 * 1100mAh Tello battery
 * x4 IRLB8721 MOSFETs
-* LSM_____________ (accelerometer)
+* LSM6DSO (accelerometer)
 * ABS (3D print material)
 * x4 Tello motors
 * x4 Tello propellers
@@ -187,6 +187,7 @@ The Pico keeps wiping at seemingly random times, leading us to believe that ther
 
 Changes:
 
+We soldered a new circuit board and redesigned/printed a new frame for the drone. The new circuit board has cleaner soldering to reduce the risk of shorts and the new frame is square in shape to make the accelerometer readings more accurate in relation to the motor positions. It also has a built in mount for the battery.
 
 
 ### Code
