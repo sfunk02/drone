@@ -160,7 +160,7 @@ We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and 
 
 ### Images
 
-<img src="docs/images/Drone3Top.jpg" alt="Drone3Top.jpg" width="330" height="250"><img src="docs/images/Drone3Bottom.jpg" alt="Drone3Bottom.jpg" width="330" height="250">
+<img src="docs/images/Drone3Top.jpg" alt="Drone3Top.jpg" width="350" height="220"><img src="docs/images/Drone3Bottom.jpg" alt="Drone3Bottom.jpg" width="350" height="220">
 
 ### Issues
 
