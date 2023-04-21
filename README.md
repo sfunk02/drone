@@ -189,6 +189,12 @@ Changes:
 
 We soldered a new circuit board and redesigned/printed a new frame for the drone. The new circuit board has cleaner soldering to reduce the risk of shorts and the new frame is square in shape to make the accelerometer readings more accurate in relation to the motor positions. It also has a built in mount for the battery.
 
+### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
+
+#### Frame (updated)
+<img src="docs/images/FrameUpdated.png" alt="FrameUpdated.png" width="330" height="250"><img src="docs/images/FrameUpdated2.png" alt="FrameUpdated2.png" width="330" height="250">
+
+The square frame design is intended to result in better stability and a more accurate PID function. The updated design also includes a mount for the battery.
 
 ### Code
 
@@ -200,7 +206,7 @@ We soldered a new circuit board and redesigned/printed a new frame for the drone
 
 ### Images
 
-<img src="docs/images/Drone4Top.png" alt="Drone3Top.png" width="330" height="250"><img src="docs/images/Drone4Bottom.png" alt="Drone3Bottom.png" width="330" height="250">
+<img src="docs/images/Drone4Top.png" alt="Drone4Top.png" width="330" height="250"><img src="docs/images/Drone4Bottom.png" alt="Drone4Bottom.png" width="330" height="250">
 
 ### Issues
 
