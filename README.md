@@ -206,11 +206,11 @@ The square frame design is intended to result in better stability and a more acc
 
 ### Images
 
-<img src="docs/images/Drone4Top.png" alt="Drone4Top.png" width="330" height="250"><img src="docs/images/Drone4Bottom.png" alt="Drone4Bottom.png" width="330" height="250">
+<img src="docs/images/Drone4Top.jpg" alt="Drone4Top.jpg" width="330" height="250"><img src="docs/images/Drone4Bottom.jpg" alt="Drone4Bottom.jpg" width="330" height="250">
 
 ### Issues
 
-
+None so far!
 
 <br>
 <br>
