@@ -187,7 +187,7 @@ The Pico keeps wiping at seemingly random times, leading us to believe that ther
 
 Changes:
 
-We soldered a new circuit board and redesigned/printed a new frame for the drone. The new circuit board has cleaner soldering to reduce the risk of shorts and the new frame is square in shape to make the accelerometer readings more accurate in relation to the motor positions. It also has a built in mount for the battery.
+We soldered a new circuit board and redesigned/printed a new frame for the drone. The new circuit board has cleaner soldering to reduce the risk of shorts and includes a power switch for easier usage. The new frame is square in shape to make the accelerometer readings more accurate in relation to the motor positions and also has a built in mount for the battery.
 
 ### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
 
