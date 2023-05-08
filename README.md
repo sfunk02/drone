@@ -210,7 +210,7 @@ The square frame design is intended to result in better stability and a more acc
 
 ### Issues
 
-None so far!
+The power switch melted because we sent more current through it than it could handle. We replaced it with a much heavier duty panel-mount style switch.
 
 <br>
 <br>
