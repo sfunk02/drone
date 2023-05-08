@@ -7,6 +7,10 @@ from adafruit_lsm6ds.lsm6dso32 import LSM6DSO32
 import busio
 import time
 import math
+import digitalio
+
+led = digitalio.DigitalInOut(board.LED)
+led.switch_to_output()
 
 MOTOR_1 = board.GP11
 MOTOR_2 = board.GP21
