@@ -25,7 +25,7 @@ sensor = LSM6DSO32(i2c)
 
 last_update = time.monotonic()
 
-Kp = 0.46
+Kp = 0.43
 Ki = 0.0 #decrease Ki
 Kd = 0.0
 
