@@ -1,3 +1,4 @@
+#type: ignore
 # Paul Schakel
 # Prototype for PID control
 
