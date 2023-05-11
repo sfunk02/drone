@@ -7,11 +7,15 @@ from adafruit_lsm6ds.lsm6dso32 import LSM6DSO32
 import busio
 import time
 import math
+import digitalio
 
-MOTOR_1 = board.GP20
+led = digitalio.DigitalInOut(board.LED)
+led.switch_to_output()
+
+MOTOR_1 = board.GP11
 MOTOR_2 = board.GP21
 MOTOR_3 = board.GP10
-MOTOR_4 = board.GP11
+MOTOR_4 = board.GP20
 motor1_pwm = pwmio.PWMOut(MOTOR_1, frequency=1000)
 motor2_pwm = pwmio.PWMOut(MOTOR_2, frequency=1000)
 motor3_pwm = pwmio.PWMOut(MOTOR_3, frequency=1000)
@@ -25,24 +29,33 @@ sensor = LSM6DSO32(i2c)
 
 last_update = time.monotonic()
 
-Kp = 0.3
-Ki = 0.05
-Kd = 0.3
+Kp = 0.43
+Ki = 0.0 #decrease Ki
+Kd = 0.0
 
-motor1_baseline = .7
-motor2_baseline = .7
-motor3_baseline = .7
-motor4_baseline = .7
+motor1_baseline = 0.7
+motor2_baseline = 0.7
+motor3_baseline = 0.7
+motor4_baseline = 0.7
 
-PID_multiplier = 800
+PID_multiplier = 1000
 
 error_pitch = 0
 error_roll = 0
 error_yaw = 0
 
-last_error_pitch = 0
-last_error_roll = 0
-last_error_yaw = 0
+last_errors_pitch = []
+last_errors_roll = []
+last_errors_yaw = []
+
+avg_error_pitch = 0
+avg_error_roll = 0
+avg_error_yaw = 0
+
+last_avg_error_pitch = 0
+last_avg_error_roll = 0
+last_avg_error_yaw = 0
+
 
 integral_pitch = 0
 integral_roll = 0
@@ -84,22 +97,26 @@ while True:
     now = time.monotonic()
     dt = now - last_update
 
-    angle += 45
+    angle -= 45
 
     if angle > 360:
         angle -= 360
 
     error_pitch = setpoint - (intensity * math.cos(math.radians(angle)))
+    last_errors_pitch.append(error_pitch)
+    avg_error_pitch = sum(last_errors_pitch) / len(last_errors_pitch)
     error_roll = setpoint - (intensity * math.sin(math.radians(angle)))
+    last_errors_roll.append(error_roll)
+    avg_error_roll = sum(last_errors_roll) / len(last_errors_roll)
 
-    integral_pitch = integral_pitch + dt * error_pitch
-    integral_roll = integral_roll + dt * error_roll
+    integral_pitch = integral_pitch + dt * avg_error_pitch
+    integral_roll = integral_roll + dt * avg_error_roll
 
-    derivative_pitch = (error_pitch - last_error_pitch)/dt
-    derivative_roll = (error_roll - last_error_roll)/dt
+    derivative_pitch = (avg_error_pitch - last_avg_error_pitch)/dt
+    derivative_roll = (avg_error_roll - last_avg_error_roll)/dt
 
-    pitch_PID =  Kp * error_pitch + Ki * integral_pitch + Kd * derivative_pitch
-    roll_PID = Kp * error_roll + Ki * integral_roll + Kd * derivative_roll
+    pitch_PID =  Kp * avg_error_pitch + Ki * integral_pitch + Kd * derivative_pitch
+    roll_PID = Kp * avg_error_roll + Ki * integral_roll + Kd * derivative_roll
 
     PID_scaler = PID_multiplier * intensity
 
@@ -128,22 +145,30 @@ while True:
 
     print("\nmotor1_pwm.duty_cycle: " + str(motor1_duty_cycle))
     print("motor3_pwm.duty_cycle: " + str(motor3_duty_cycle))
+    print("motor2_pwm.duty_cycle: " + str(motor2_duty_cycle))
+    print("motor4_pwm.duty_cycle: " + str(motor4_duty_cycle))
+    #print("roll_PID: " + str(roll_PID))
+    print("pitch_PID: " + str(pitch_PID))
 
     motor1_pwm.duty_cycle = motor1_duty_cycle
     motor2_pwm.duty_cycle = motor2_duty_cycle
     motor3_pwm.duty_cycle = motor3_duty_cycle
     motor4_pwm.duty_cycle = motor4_duty_cycle
-    last_error_pitch = error_pitch
-    last_error_roll = error_roll
     last_update = now
+    last_avg_error_pitch = avg_error_pitch
+    last_avg_error_roll = avg_error_roll
 
-    time.sleep(.07)
+    if len(last_errors_pitch) > 5:
+        last_errors_pitch.pop(0)
+    if len(last_errors_roll) > 5:
+        last_errors_roll.pop(0)
 
+    #time.sleep(.08)
     #print("\nangle: " + str(angle))
     #print("pitch_PID: " + str(pitch_PID))
     #print("integral_pitch: " + str(integral_pitch))
     #print("derivative_pitch: " + str(derivative_pitch))
-    #print("error_pitch: " + str(error_pitch))
+    #print("avg_error_pitch: " + str(avg_error_pitch))
 
     #temp_baseline = float(input("Enter baseline: "))
     #motor1_baseline = temp_baseline

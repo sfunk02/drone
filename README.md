@@ -2,7 +2,7 @@
 
 ## by Sam Funk and Paul Schakel
 
-#### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Drone 3.0](https://github.com/sfunk02/drone#drone-30) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways)
+#### [Drone 1.0](https://github.com/sfunk02/drone#drone-10) | [Drone 2.0](https://github.com/sfunk02/drone#drone-20) | [Drone 3.0](https://github.com/sfunk02/drone#drone-30) | [Drone 4.0](https://github.com/sfunk02/drone#drone-40) | [Final Takeaways](https://github.com/sfunk02/drone#final-takeaways)
 
 ## Introduction
 
@@ -137,7 +137,7 @@ Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins
 * Raspberry Pi Pico
 * 1100mAh Tello battery
 * x4 IRLB8721 MOSFETs
-* MPU6050 (accelerometer)
+* LSM6DSO (accelerometer)
 * ABS (3D print material)
 * x4 Tello motors
 * x4 Tello propellers
@@ -148,7 +148,7 @@ Standby pin disconnected on one h-bridge, PWM signal and 3.3V sent to wrong pins
 
 Changes:
 
-We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with N-Channel MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. 
+We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and tested it on a breadboard. We found that the amount of current pulled by our motors was too great, and caused the transistors to smoke. To allow a greater flow of current without limiting our voltage, we switched out the transistors with N-Channel MOSFETs that are rated to a much higher current and voltage. They also have heatsinks, and shouldn't overheat like our previous H-bridges. We also switched out our MPU6050 accelerometer for a more accurate LSM6DSO.
 
 ### Code
 
@@ -160,11 +160,57 @@ We originally switched out our 2 H-bridges with 4 transistors (1 per motor) and 
 
 ### Images
 
-<img src="docs/images/Drone3Top.png" alt="Drone3Top.png" width="330" height="250"><img src="docs/images/Drone3Bottom.png" alt="Drone3Bottom.png" width="330" height="250">
+<img src="docs/images/Drone3Top.jpg" alt="Drone3Top.jpg" width="403" height="227"><img src="docs/images/Drone3Bottom.jpg" alt="Drone3Bottom.jpg" width="403" height="227">
 
 ### Issues
 
-Remains to be seen...
+The Pico keeps wiping at seemingly random times, leading us to believe that there is a short somewhere in the circuitry caused by continual movement of the drone. We aren't able to trace the short and decided it would be better to solder a new circuit board. Additionally, the rectangular shape of the drone causes issues with the code for the accelerometer, and the battery is only attached with a rubber band. Drone 4.0 will address all of these problems.
+
+<br>
+<br>
+
+## Drone 4.0
+
+### Bill of Materials
+
+* Raspberry Pi Pico
+* 1100mAh Tello battery
+* x4 IRLB8721 MOSFETs
+* LSM6DSO (accelerometer)
+* ABS (3D print material)
+* x4 Tello motors
+* x4 Tello propellers
+* x4 1.25mm female JST connectors
+* circuit board
+* wires and solder
+* hardware to attach frame to circuit board
+
+Changes:
+
+We soldered a new circuit board and redesigned/printed a new frame for the drone. The new circuit board has cleaner soldering to reduce the risk of shorts and includes a power switch for easier usage. The new frame is square in shape to make the accelerometer readings more accurate in relation to the motor positions and also has a built in mount for the battery.
+
+### CAD [(Onshape)](https://cvilleschools.onshape.com/documents/ce9d8d739d2d9f15e9173bc0/w/6c76af61bf90a62108bdc466/e/912e9d444323990bdd98e468?renderMode=0&uiState=63b58eecc68e6a59295096d6)
+
+#### Frame (updated)
+<img src="docs/images/FrameUpdated.png" alt="FrameUpdated.png" width="330" height="250"><img src="docs/images/FrameUpdated2.png" alt="FrameUpdated2.png" width="330" height="250">
+
+The square frame design is intended to result in better stability and a more accurate PID function. The updated design also includes a mount for the battery.
+
+### Code
+
+[Link to Code](code/final_code_4.0.py)
+
+### Wiring
+
+<img src="docs/images/wiring_4.0.png" width=600px alt="Drone4Wiring">
+
+### Images
+
+<img src="docs/images/Drone4Top.jpg" alt="Drone4Top.jpg" width="403" height="227"><img src="docs/images/Drone4Bottom.jpg" alt="Drone4Bottom.jpg" width="403" height="227">
+
+### Issues
+
+The power switch melted because we sent more current through it than it could handle. We replaced it with a much heavier duty panel-mount style switch.
 
 <br>
 <br>
