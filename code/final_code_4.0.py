@@ -8,10 +8,6 @@ from adafruit_lsm6ds.lsm6dso32 import LSM6DSO32
 import busio
 import time
 import math
-import digitalio
-
-led = digitalio.DigitalInOut(board.LED)
-led.switch_to_output()
 
 MOTOR_1 = board.GP11
 MOTOR_2 = board.GP21
@@ -30,8 +26,8 @@ sensor = LSM6DSO32(i2c)
 
 last_update = time.monotonic()
 
-Kp = 0.43
-Ki = 0.0 #decrease Ki
+Kp = 0.23
+Ki = 0.1 #decrease Ki
 Kd = 0.0
 
 motor1_baseline = 0.7
@@ -76,105 +72,111 @@ pitch_PID = 0
 roll_PID = 0
 yaw_PID = 0
 
-while True:
-    x = sensor.acceleration[0]
-    y = sensor.acceleration[1]
-    if x == 0:
-        x = 0.000001
-    angle = math.degrees(math.atan(y/x))
-    intensity = math.sqrt((x**2) + (y**2))
+with open("/error.txt", "a") as datalog:
+    datalog.write('Pitch_Error,Roll_Error\n')  #title for the log file
+    datalog.flush()
+    while True:
+        x = sensor.acceleration[0]
+        y = sensor.acceleration[1]
+        if x == 0:
+            x = 0.000001
+        angle = math.degrees(math.atan(y/x))
+        intensity = math.sqrt((x**2) + (y**2))
 
-    if intensity > 9.8:
-        intensity = 9.8
+        if intensity > 9.8:
+            intensity = 9.8
 
-    # Find quadrant and make angle between 0 and 360
-    if x < 0 and y > 0: # Q2
-        angle += 360
-    elif x > 0 and y > 0: # Q3
-        angle += 180
-    elif x > 0 and y < 0: #Q4
-        angle += 180
+        # Find quadrant and make angle between 0 and 360
+        if x < 0 and y > 0: # Q2
+            angle += 360
+        elif x > 0 and y > 0: # Q3
+            angle += 180
+        elif x > 0 and y < 0: #Q4
+            angle += 180
 
-    now = time.monotonic()
-    dt = now - last_update
+        now = time.monotonic()
+        dt = now - last_update
 
-    angle -= 45
+        angle -= 45
 
-    if angle > 360:
-        angle -= 360
+        if angle > 360:
+            angle -= 360
 
-    error_pitch = setpoint - (intensity * math.cos(math.radians(angle)))
-    last_errors_pitch.append(error_pitch)
-    avg_error_pitch = sum(last_errors_pitch) / len(last_errors_pitch)
-    error_roll = setpoint - (intensity * math.sin(math.radians(angle)))
-    last_errors_roll.append(error_roll)
-    avg_error_roll = sum(last_errors_roll) / len(last_errors_roll)
+        error_pitch = setpoint - (intensity * math.cos(math.radians(angle)))
+        last_errors_pitch.append(error_pitch)
+        avg_error_pitch = sum(last_errors_pitch) / len(last_errors_pitch)
+        error_roll = setpoint - (intensity * math.sin(math.radians(angle)))
+        last_errors_roll.append(error_roll)
+        avg_error_roll = sum(last_errors_roll) / len(last_errors_roll)
 
-    integral_pitch = integral_pitch + dt * avg_error_pitch
-    integral_roll = integral_roll + dt * avg_error_roll
+        integral_pitch = integral_pitch + dt * avg_error_pitch
+        integral_roll = integral_roll + dt * avg_error_roll
 
-    derivative_pitch = (avg_error_pitch - last_avg_error_pitch)/dt
-    derivative_roll = (avg_error_roll - last_avg_error_roll)/dt
+        derivative_pitch = (avg_error_pitch - last_avg_error_pitch)/dt
+        derivative_roll = (avg_error_roll - last_avg_error_roll)/dt
 
-    pitch_PID =  Kp * avg_error_pitch + Ki * integral_pitch + Kd * derivative_pitch
-    roll_PID = Kp * avg_error_roll + Ki * integral_roll + Kd * derivative_roll
+        pitch_PID =  Kp * avg_error_pitch + Ki * integral_pitch + Kd * derivative_pitch
+        roll_PID = Kp * avg_error_roll + Ki * integral_roll + Kd * derivative_roll
 
-    PID_scaler = PID_multiplier * intensity
+        PID_scaler = PID_multiplier * intensity
 
-    motor1_duty_cycle = int(65535 * motor1_baseline - pitch_PID * PID_scaler)
-    motor2_duty_cycle = int(65535 * motor2_baseline - roll_PID * PID_scaler)
-    motor3_duty_cycle = int(65535 * motor3_baseline + pitch_PID * PID_scaler)
-    motor4_duty_cycle = int(65535 * motor4_baseline + roll_PID * PID_scaler)
+        motor1_duty_cycle = int(65535 * motor1_baseline - pitch_PID * PID_scaler)
+        motor2_duty_cycle = int(65535 * motor2_baseline - roll_PID * PID_scaler)
+        motor3_duty_cycle = int(65535 * motor3_baseline) # + pitch_PID * PID_scaler)
+        motor4_duty_cycle = int(65535 * motor4_baseline) # + roll_PID * PID_scaler)
 
-    if motor1_duty_cycle > 65535:
-        motor1_duty_cycle = 65535
-    if motor2_duty_cycle > 65535:
-        motor2_duty_cycle = 65535
-    if motor3_duty_cycle > 65535:
-        motor3_duty_cycle = 65535
-    if motor4_duty_cycle > 65535:
-        motor4_duty_cycle = 65535
-    if motor1_duty_cycle < 2000:
-        motor1_duty_cycle = 2000
-    if motor2_duty_cycle < 2000:
-        motor2_duty_cycle = 2000
-    if motor3_duty_cycle < 2000:
-        motor3_duty_cycle = 2000
-    if motor4_duty_cycle < 2000:
-        motor4_duty_cycle = 2000
+        if motor1_duty_cycle > 65535:
+            motor1_duty_cycle = 65535
+        if motor2_duty_cycle > 65535:
+            motor2_duty_cycle = 65535
+        if motor3_duty_cycle > 65535:
+            motor3_duty_cycle = 65535
+        if motor4_duty_cycle > 65535:
+            motor4_duty_cycle = 65535
+        if motor1_duty_cycle < 2000:
+            motor1_duty_cycle = 2000
+        if motor2_duty_cycle < 2000:
+            motor2_duty_cycle = 2000
+        if motor3_duty_cycle < 2000:
+            motor3_duty_cycle = 2000
+        if motor4_duty_cycle < 2000:
+            motor4_duty_cycle = 2000
 
 
-    print("\nmotor1_pwm.duty_cycle: " + str(motor1_duty_cycle))
-    print("motor3_pwm.duty_cycle: " + str(motor3_duty_cycle))
-    print("motor2_pwm.duty_cycle: " + str(motor2_duty_cycle))
-    print("motor4_pwm.duty_cycle: " + str(motor4_duty_cycle))
-    #print("roll_PID: " + str(roll_PID))
-    print("pitch_PID: " + str(pitch_PID))
+        print("\nmotor1_pwm.duty_cycle: " + str(motor1_duty_cycle))
+        print("motor3_pwm.duty_cycle: " + str(motor3_duty_cycle))
+        print("motor2_pwm.duty_cycle: " + str(motor2_duty_cycle))
+        print("motor4_pwm.duty_cycle: " + str(motor4_duty_cycle))
+        #print("roll_PID: " + str(roll_PID))
+        print("pitch_PID: " + str(pitch_PID))
 
-    motor1_pwm.duty_cycle = motor1_duty_cycle
-    motor2_pwm.duty_cycle = motor2_duty_cycle
-    motor3_pwm.duty_cycle = motor3_duty_cycle
-    motor4_pwm.duty_cycle = motor4_duty_cycle
-    last_update = now
-    last_avg_error_pitch = avg_error_pitch
-    last_avg_error_roll = avg_error_roll
+        motor1_pwm.duty_cycle = motor1_duty_cycle   #setting motor speeds
+        motor2_pwm.duty_cycle = motor2_duty_cycle
+        motor3_pwm.duty_cycle = motor3_duty_cycle
+        motor4_pwm.duty_cycle = motor4_duty_cycle
+        last_update = now
+        last_avg_error_pitch = avg_error_pitch
+        last_avg_error_roll = avg_error_roll
 
-    if len(last_errors_pitch) > 5:
-        last_errors_pitch.pop(0)
-    if len(last_errors_roll) > 5:
-        last_errors_roll.pop(0)
+        if len(last_errors_pitch) > 5:
+            last_errors_pitch.pop(0)
+        if len(last_errors_roll) > 5:
+            last_errors_roll.pop(0)
 
-    #time.sleep(.08)
-    #print("\nangle: " + str(angle))
-    #print("pitch_PID: " + str(pitch_PID))
-    #print("integral_pitch: " + str(integral_pitch))
-    #print("derivative_pitch: " + str(derivative_pitch))
-    #print("avg_error_pitch: " + str(avg_error_pitch))
+        datalog.write('{},{}\n'.format(error_pitch, error_roll))  #storing error data on the log file
+        datalog.flush()
 
-    #temp_baseline = float(input("Enter baseline: "))
-    #motor1_baseline = temp_baseline
-    #motor2_baseline = temp_baseline
-    #motor3_baseline = temp_baseline
-    #motor4_baseline = temp_baseline
+        #time.sleep(.08)
+        #print("\nangle: " + str(angle))
+        #print("pitch_PID: " + str(pitch_PID))
+        #print("integral_pitch: " + str(integral_pitch))
+        #print("derivative_pitch: " + str(derivative_pitch))
+        #print("avg_error_pitch: " + str(avg_error_pitch))
 
-    #print(f"x: {round(sensor.acceleration[0], 3)} y: {round(sensor.acceleration[1], 3)} z: {round(sensor.acceleration[2], 3)}")
+        #temp_baseline = float(input("Enter baseline: "))
+        #motor1_baseline = temp_baseline
+        #motor2_baseline = temp_baseline
+        #motor3_baseline = temp_baseline
+        #motor4_baseline = temp_baseline
+
+        #print(f"x: {round(sensor.acceleration[0], 3)} y: {round(sensor.acceleration[1], 3)} z: {round(sensor.acceleration[2], 3)}")
