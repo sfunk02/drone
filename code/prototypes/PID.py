@@ -128,10 +128,6 @@ while True:
 
     print("\nmotor1_pwm.duty_cycle: " + str(motor1_duty_cycle))
     print("motor3_pwm.duty_cycle: " + str(motor3_duty_cycle))
-    print("\nmotor2_pwm.duty_cycle: " + str(motor2_duty_cycle))
-    print("motor4_pwm.duty_cycle: " + str(motor4_duty_cycle))
-    print("roll_PID: " + str(roll_PID))
-    print("pitch: " + str(pitch_PID))
 
     motor1_pwm.duty_cycle = motor1_duty_cycle
     motor2_pwm.duty_cycle = motor2_duty_cycle
@@ -141,7 +137,8 @@ while True:
     last_error_roll = error_roll
     last_update = now
 
-    time.sleep(.08)
+    time.sleep(.07)
+
     #print("\nangle: " + str(angle))
     #print("pitch_PID: " + str(pitch_PID))
     #print("integral_pitch: " + str(integral_pitch))
