@@ -10,7 +10,7 @@ import board
 import digitalio
 import storage
 
-write_pin = digitalio.DigitalInOut(board.GP0)   # solder jumper to switch to ground from GP0
+write_pin = digitalio.DigitalInOut(board.GP9)   # solder jumper to switch to ground from GP0
 write_pin.direction = digitalio.Direction.INPUT
 write_pin.pull = digitalio.Pull.UP
 
