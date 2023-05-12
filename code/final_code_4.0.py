@@ -53,7 +53,6 @@ last_avg_error_pitch = 0
 last_avg_error_roll = 0
 last_avg_error_yaw = 0
 
-
 integral_pitch = 0
 integral_roll = 0
 integral_yaw = 0
