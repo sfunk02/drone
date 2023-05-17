@@ -210,9 +210,17 @@ The square frame design is intended to result in better stability and a more acc
 
 ### Issues
 
-The power switch melted because we sent more current through it than it could handle. We replaced it with a much heavier duty panel-mount style switch.
+The power switch melted because we sent more current through it than it could handle. We replaced it with a much heavier duty panel-mount style switch. Then, the wires going to the battery started melting so we replaced them with much heavier gauge wire. To add data logging functionality, we had to add another small switch to the circuit board to switch the Pi between read-only mode and write-only mode.
 
 <br>
 <br>
 
 ## Final Takeaways
+
+Still need:
+* video of final (only) launch
+* graphs of data from pitch and roll error
+* picture of testing bench
+* description of what we couldn't accomplish and why / what went well
+* commented code
+* Wire diagram 4
