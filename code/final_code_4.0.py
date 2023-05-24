@@ -102,12 +102,12 @@ while True:
 
     run_time = now - start_time
 
-    while run_time < 2:
+    if run_time < 2:
         if motor_baseline < 0.7:
-            motor_baseline += 0.05
-    while run_time > 2 and run_time < 4:
-        if motor_baseline > 0:
-            motor_baseline -= 0.05
+            motor_baseline += 0.005
+    if run_time > 2 and run_time < 4:
+        if motor_baseline > 0.1:
+            motor_baseline -= 0.005
     if run_time > 4:
         break
         
@@ -156,6 +156,7 @@ while True:
     print("motor3_pwm.duty_cycle: " + str(motor3_duty_cycle))
     print("motor2_pwm.duty_cycle: " + str(motor2_duty_cycle))
     print("motor4_pwm.duty_cycle: " + str(motor4_duty_cycle))
+    print("motor_baseline: " + str(motor_baseline))
     #print("roll_PID: " + str(roll_PID))
     print("pitch_PID: " + str(pitch_PID))
 
@@ -179,6 +180,10 @@ while True:
 
 
 with open("/error.txt", "a") as datalog:
+    motor1_pwm.duty_cycle = 0   #setting motor speeds
+    motor2_pwm.duty_cycle = 0
+    motor3_pwm.duty_cycle = 0
+    motor4_pwm.duty_cycle = 0
     datalog.write('Pitch_Error,Roll_Error\n')  #title for the log file
     datalog.flush()
     for i in range(len(pitch_data)):
