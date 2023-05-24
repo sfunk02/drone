@@ -218,12 +218,15 @@ The power switch melted because we sent more current through it than it could ha
 ## Final Takeaways
 
 Test Bench:
+
 <img src="docs/images/testBench.jpg" width=600px alt="testBench">
 
 Final Launch:
+
 ![drone.gif](docs/images/drone.gif)
 
 Graph of Data:
+
 <img src="docs/images/chart.png" width=600px alt="chart">
 
 Still need:
