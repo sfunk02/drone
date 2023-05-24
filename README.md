@@ -217,10 +217,16 @@ The power switch melted because we sent more current through it than it could ha
 
 ## Final Takeaways
 
+Test Bench:
+<img src="docs/images/testBench.jpg" width=600px alt="testBench">
+
+Final Launch:
+![drone.gif](docs/images/drone.gif)
+
+Graph of Data:
+<img src="docs/images/chart.png" width=600px alt="chart">
+
 Still need:
-* video of final (only) launch
-* graphs of data from pitch and roll error
-* picture of testing bench
 * description of what we couldn't accomplish and why / what went well
 * commented code
 * Wire diagram 4
