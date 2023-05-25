@@ -227,7 +227,7 @@ The test bench was the system we developed to code and tune our PID for the dron
 
 ![drone.gif](docs/images/drone.gif)
 
-Unfortunately, our drone did not work very well. We think that the PID caused the drone to launch sideways instead of up, which is why it went straight into the ground. If we had more time to tune the PID, we probably could've gotten it to hover and balance itself. We also maybe could've had a succesful launch if we disabled PID altogether, but that would've been sad because we spent multiple weeks on it.
+Unfortunately, our drone did not work very well. We think that the PID caused the drone to launch sideways instead of up, which is why it went straight into the ground. If we had more time to tune the PID, we probably could've gotten it to hover and balance itself. We also maybe could've had a more successful launch if we disabled PID altogether, but that would've been sad because we spent multiple weeks on it.
 
 ### Graph of Data:
 
