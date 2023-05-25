@@ -217,19 +217,24 @@ The power switch melted because we sent more current through it than it could ha
 
 ## Final Takeaways
 
-Test Bench:
+### Test Bench:
 
 <img src="docs/images/testBench.jpg" width=600px alt="testBench">
 
-Final Launch:
+The test bench was the system we developed to code and tune our PID for the drone. Our original setup was a board with the drone attached by strings. This didn't work very well, as the drone would swing back and forth on the strings and was never able to balance itself in the middle. We instead opted to have a rod to which the drone was attached, which moved the fulcrum point directly to the bottom of the drone. We still had trouble with getting it to balance, but our PID did seem to get a bit better than it had previously been.
+
+### Final Launch:
 
 ![drone.gif](docs/images/drone.gif)
 
-Graph of Data:
+Unfortunately, our drone did not work very well. We think that the PID caused the drone to launch sideways instead of up, which is why it went straight into the ground. If we had more time to tune the PID, we probably could've gotten it to hover and balance itself. We also maybe could've had a succesful launch if we disabled PID altogether, but that would've been sad because we spent multiple weeks on it.
+
+### Graph of Data:
 
 <img src="docs/images/chart.png" width=600px alt="chart">
 
-Still need:
-* description of what we couldn't accomplish and why / what went well
-* commented code
-* Wire diagram 4
+As you can see in the graph, there is a large spike in both pitch and roll error in the middle, followed by a drop and an approximate flatline. The spike is when the drone lurches sideways off the cone, causing a lot of force to act on the accelerometer. The drop is when the drone hits the ground, and then the flatline follows when it stays in the same place for a few seconds.
+
+### Final Reflection:
+
+We learned a lot about code, PID, and 3D design throughout the duration of this project. Unfortunately, we never got it working 100%, but we did get very close. Designing a drone was a very fun challenge and I'm glad we attempted it. If we had more time, we potentially would have been able to properly tune the PID and get the drone to balance itself. We also wanted to add an additional board to the drone that would allow it to connect to a controller and be maneuvered wirelessly during flight. Even though we didn't get it working, I am now confident in my ability to design and create a new drone in only 2-3 class periods.
